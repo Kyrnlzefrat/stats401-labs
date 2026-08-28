@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Lab 2: Multivariate Visualization</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Lab 2: Visualizing Multivariate Data with D3.js</h1>
+        <p>
+            This is Lab 2 for STATS 401.
+        </p>
+    </header>
+    <nav class="lab-nav">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <main>
+        <h2>Lab 2: Multivariate Visualization with D3</h2>
+        <div id="chart"></div>
+        <p>
+            I use a combined way of bar chart and bubble chart to visualize the multivariate data. 
+            Bar height represents the population, since position and length make quantitative
+            comparisons easy. Temperature is represented by the vertical position of the bubble, allowing viewers to
+            compare temperatures across cities. The bubble size represents the development level, where larger bubbles represent
+            higher development levels. Region is represented by bubble color, a categorical color scale is selected
+            so that cities from the same region can be easily identified. The city names are shown along the x-axis,
+            while tooltips provide the exact values for each city. This design allows viewers to compare population and
+            temperature simultaneously while also identifying patterns related to development level and geographic region.
+        </p>
+        <div id="tooltip" class="tooltip"></div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="../lab2/js/main.js"></script>
+    <a href="../index.html">
+        Back to home
+    </a>
+</body>
+</html>
