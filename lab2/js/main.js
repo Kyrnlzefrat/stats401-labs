@@ -20,7 +20,7 @@ d3.csv("../data/cities_multivariate.csv", d => ({
     const colorScale = d3.scaleOrdinal().domain(regions).range(d3.schemeCategory10);
     svg.append("g").attr("transform", `translate(0, ${height - margin.bottom})`).call(d3.axisBottom(xScale)).selectAll("text").attr("transform", "rotate(-45)").style("text-anchor", "end");
     svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(populationScale));
-    svg.append("g").attr("transform", `translate(${width - margin.right}, 0)`).call(d3.axisLeft(populationScale));
+    svg.append("g").attr("transform", `translate(${width - margin.right}, 0)`).call(d3.axisLeft(temperatureScale));
     svg.append("text").attr("x", (margin.left + width - margin.right) / 2).attr("y", height - 25).attr("text-anchor", "middle").attr("class", "axis-label").text("City");
     svg.append("text").attr("transform", "rotate(-90)").attr("x", -height / 2).attr("y", 15).attr("text-anchor", "middle").attr("class", "axis-label").text("Population(Million)");
     svg.append("text").attr("transform","rotate(90)").attr("x", height / 2).attr("y", -(width - margin.right) + 45).attr("text-anchor", "middle").attr("class", "axis-label").text("Temperature (°C)");
