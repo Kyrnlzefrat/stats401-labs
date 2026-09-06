@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4: Cleaning Web Data for Visualization</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Lab 4: Cleaning Web Data for Visualization</h1>
+        <p>
+            This is Lab 4 for STATS 401.
+        </p>
+    </header>
+    <nav class="lab-nav">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <main>
+        <p class="intro">
+            This is Lab 4 for STATS 401.
+            This project demonstrates a complete workflow for transforming web data
+            into a form suitable for visualization. Bitcoin-related tweets were
+            collected from a public dataset, cleaned and standardized, processed
+            using natural language techniques, and analyzed with a RoBERTa
+            sentiment model. The resulting tidy data were then visualized using D3.js.
+        </p>
+        <svg id="sentiment-chart"></svg>
+        <div id="tooltip"></div>
+        <div id="error-message"></div>
+        <h2>1. Web Data Acquisition</h2>
+        <p class="section">
+            The dataset contains Bitcoin-related tweets together with additional
+            tweet and user attributes, including date, user location, follower
+            count, hashtags, source, and retweet information. A sample of tweets
+            distributed across the full time range of the dataset was extracted
+            rather than using only consecutive records.
+        </p>
+        <h2>2. Data Cleaning and Preparation</h2>
+        <p class="section">
+            The raw web data were inspected for missing values, duplicate tweets,
+            inconsistent data types, malformed records, and invalid values.
+            Relevant date fields were converted into standardized date formats,
+            numerical attributes were converted to numeric types, and tweet text
+            was cleaned before sentiment analysis. Missing values in optional
+            metadata fields were retained where they represented unavailable
+            information rather than valid observations.
+        </p>
+        <h2>3. Text Processing and Sentiment Analysis</h2>
+        <p class="section">
+            Tweet text was normalized by removing or replacing elements such as
+            URLs, mentions, and other unnecessary tokens while preserving the
+            information needed for sentiment analysis. The cleaned text was then
+            analyzed using a Twitter-specific RoBERTa sentiment model. The model
+            produces probabilities for negative, neutral, and positive sentiment.
+            A continuous sentiment score was calculated as the positive probability
+            minus the negative probability, giving a value between -1 and 1.
+        </p>
+        <h2>4. Visualization</h2>
+        <p>
+            The visualization below combines sentiment with tweet volume over time.
+            The x-axis represents the date, while the y-axis represents the average
+            sentiment score. Each circle represents a date with available tweets,
+            and its size represents the number of tweets on that date. Hover over a
+            circle to view the date, sentiment score, and tweet count.
+        </p>
+        <h2>5. Analysis</h2>
+        <p class="analysis">
+            The cleaned dataset shows how preprocessing can transform heterogeneous
+            web data into a structured dataset suitable for visualization. After
+            cleaning the tweet text and standardizing dates and numerical
+            attributes, sentiment can be compared consistently across time. The
+            visualization shows considerable variation in average sentiment across
+            the observed dates, while the different circle sizes reveal substantial
+            variation in tweet volume. Most average sentiment values are above zero,
+            indicating that positive sentiment was generally more common than
+            negative sentiment in the sampled data. However, higher tweet volume
+            does not consistently correspond to higher sentiment. This suggests that
+            periods of increased online discussion were not necessarily associated
+            with more positive sentiment. Overall, the visualization demonstrates
+            how cleaning, transforming, and enriching web data can reveal patterns
+            that would be difficult to observe directly from the original raw data.
+        </p>
+        <h2>6. Data Pipeline</h2>
+        <p class="section">
+            The workflow used in this project can be summarized as:
+        </p>
+        <ul class="method-list">
+            <li>Collect raw web data</li>
+            <li>Inspect and clean the dataset</li>
+            <li>Normalize and preprocess tweet text</li>
+            <li>Apply RoBERTa sentiment analysis</li>
+            <li>Create tidy, visualization-ready data</li>
+            <li>Aggregate sentiment and tweet volume by date</li>
+            <li>Visualize the cleaned data with D3.js</li>
+        </ul>
+        <p class="source">
+            Visualization data:
+            <code>data/sentiment_by_date.csv</code>
+        </p>
+    <main>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/main.js"></script>
+    <p>
+        <a href="../index.html">
+            Back to home
+        </a>
+    </p>
+
+</body>
+</html>

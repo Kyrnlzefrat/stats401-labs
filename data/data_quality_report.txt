@@ -1,0 +1,48 @@
+Original rows: 4502
+Rows after cleaning: 4502
+Exact duplicate rows before cleaning: 0
+
+Missing values before cleaning:
+  user_name: 0
+  user_location: 2212
+  user_description: 430
+  user_created: 0
+  user_followers: 0
+  user_friends: 0
+  user_favourites: 0
+  user_verified: 0
+  date: 0
+  text: 0
+  hashtags: 113
+  source: 32
+  is_retweet: 0
+
+Missing values after cleaning:
+  tweet_text_raw: 0
+  date: 0
+  tweet_date: 0
+  hour: 0
+  weekday: 0
+  user_name: 0
+  user_location: 2212
+  user_followers: 0
+  user_friends: 0
+  user_favourites: 0
+  user_verified: 0
+  hashtags: 113
+  source: 32
+  is_retweet: 0
+  text_clean: 0
+  sentiment_negative: 0
+  sentiment_neutral: 0
+  sentiment_positive: 0
+  sentiment_score: 0
+  sentiment: 0
+  user_description: 430
+  user_created: 0
+
+Sentiment counts:
+sentiment
+Neutral     2363
+Positive    1820
+Negative     319
