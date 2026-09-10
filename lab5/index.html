@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Lab 5: Interaction Network Visualization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Lab 5: Interaction Network Visualization</h1>
+        <p>
+            This is Lab 5 for STATS 401.
+        </p>
+    </header>
+    <nav class="lab-nav">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <main>
+        <h2>Part A: Force-Directed Network</h2>
+        <div id="network-container">
+            <svg id="network-svg"></svg>
+            <div id="tooltip"></div>
+        </div>
+        <div id="legend"></div>
+        <h2>Part B: Adjacency Matrix</h2>
+        <p>
+            The adjacency matrix represents the same transit network.
+            Rows and columns correspond to stations, while filled cells
+            represent direct transit connections.
+        </p>
+        <div id="matrix-container">
+            <svg id="matrix-svg"></svg>
+            <div id="matrix-tooltip"></div>
+        </div>
+        <div id="matrix-legend"></div>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script src="lab5.js"></script>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="js/main.js"></script>
+    <h2>Part C: Design Description and Network Questions</h2>
+        <h3>C1. Node-Link Design</h3>
+        <p>
+        The node-link view uses color for district, size of each node for daily passenger volume,
+        and shape represents station type. In this case, Larger nodes indicate higher passenger volume,
+        and different shapes distinguish Local, Transfer, and Terminal stations.
+        Link width represents travel time between two stations and link color represents route type.
+        Hover highlighting emphasizes a station and its neighbors, while tooltips
+        show station attributes and dragging helps explore the network structure.
+        </p>
+
+        <h3>C2. Matrix Design</h3>
+        <p>
+        The matrix uses rows and columns for stations and filled cells for direct
+        connections. Cell color represents route type and color opacity represents travel
+        time. Station labels are colored by district (similar with C1), with stations ordered by
+        district and then station type. This ordering makes connection patterns easier to identify 
+        while preserving important route information.
+        </p>
+        <h3>C3. Network Questions and Findings</h3>
+        <ol>
+        <li><strong>Central stations — Can be answered well, node-link:</strong> stations with three connections, including Stations 16, 18, 21, 23, 25, 29, 31, 33, 34, and 38, appear most central. When looking at the node-link view, these stations are prominently displayed due to their high connectivity.</li>
+        <li><strong>Strongly connected districts — Can be answered well, matrix:</strong> Accoring to the matrix, East–South has the most direct connections (11), followed by Central–North and East–West (9 each).</li>
+        <li><strong>Transfer/terminal topology — Can be answered well, node-link:</strong> distinct shapes show these stations clearly; several, including Stations 29, 31, 34, and 38, are highly connected. Normally they have several edges connecting to other stations.</li>
+        <li><strong>High passenger volume — Can be answered well, node-link:</strong> node size shows that Station 50 has the highest volume, followed by Stations 49 and 48. It can be seen by the large size of the node.</li>
+        <li><strong>Longest connections — Can be answered well, both:</strong> the thickest/darkest connection is Station 7–31 (16 min, Express), followed by Station 18–34 (15 min, Express). Both can be found by checking the link widths in the figure. It can also be shown by the opacity of the cells in the matrix.</li>
+        <li><strong>Route-type concentration — Partially, both:</strong> route types are broadly distributed, with some variation between district pairs but no strong overall concentration. There is no specific feature can be found to identify a strong concentration in specific region in the figures, neither a specific colored cell can be found in the matrix.</li>
+        </ol>
+    <p>
+        <a href="../index.html">
+            Back to home
+        </a>
+    </p>
+</body>
+</html>

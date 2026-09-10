@@ -1,0 +1,276 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+#chart {
+    margin-top: 30px;
+}
+
+.lab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 30px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.lab-nav a {
+    padding: 8px 14px;
+    text-decoration: none;
+    background: #f1f1f1;
+    color: #333;
+    border-radius: 5px;
+}
+
+.lab-nav a:hover {
+    background: #333;
+    color: white;
+}
+#network-container {
+    position: relative;
+    margin-top: 30px;
+}
+#network-svg {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
+.link {
+    transition: opacity 0.2s ease, stroke-width 0.2s ease;
+}
+.link.dimmed {
+    opacity: 0.08;
+}
+.link.highlighted {
+    opacity: 1;
+}
+.node {
+    cursor: grab;
+}
+.node:active {
+    cursor: grabbing;
+}
+.node-shape {
+    stroke: #333;
+    stroke-width: 1.5px;
+    transition: opacity 0.2s ease, stroke-width 0.2s ease;
+}
+.node.dimmed {
+    opacity: 0.15;
+}
+.node.highlighted .node-shape {
+    stroke: #000;
+    stroke-width: 3px;
+}
+#tooltip {
+    position: absolute;
+    pointer-events: none;
+
+    opacity: 0;
+
+    padding: 10px 12px;
+
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    z-index: 10;
+}
+#legend {
+    margin-top: 20px;
+    padding: 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+    background: #fafafa;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+.legend-section {
+    min-width: 160px;
+}
+.legend-section h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 5px 0;
+
+    font-size: 14px;
+}
+.legend-color {
+    display: inline-block;
+
+    width: 16px;
+    height: 16px;
+
+    border-radius: 3px;
+
+    border: 1px solid #999;
+}
+.legend-shape {
+    display: inline-block;
+
+    width: 16px;
+    height: 16px;
+
+    border: 2px solid #333;
+
+    box-sizing: border-box;
+}
+.legend-local {
+    border-radius: 50%;
+}
+.legend-transfer {
+    border-radius: 2px;
+}
+.legend-terminal {
+    width: 0;
+    height: 0;
+
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 16px solid #333;
+
+    border-top: none;
+}
+.legend-text {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #555;
+}
+#matrix-container {
+    position: relative;
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+#matrix-svg {
+    display: block;
+    width: 100%;
+    min-width: 900px;
+    background: #fafafa;
+    border: 1px solid #ddd;
+}
+
+.matrix-cell {
+    stroke: #fff;
+    stroke-width: 0.5px;
+    cursor: pointer;
+}
+
+.matrix-cell:hover {
+    stroke: #222;
+    stroke-width: 2px;
+}
+
+.matrix-label {
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.matrix-label:hover {
+    font-weight: bold;
+}
+
+.matrix-label.dimmed {
+    opacity: 0.2;
+}
+
+.matrix-cell.dimmed {
+    opacity: 0.08;
+}
+
+.matrix-cell.highlighted {
+    stroke: #222;
+    stroke-width: 1.5px;
+}
+
+.matrix-grid-line {
+    stroke: #ddd;
+    stroke-width: 0.5px;
+}
+
+#matrix-tooltip {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    padding: 10px 12px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    line-height: 1.5;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+#matrix-legend {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fafafa;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.matrix-legend-section {
+    min-width: 180px;
+}
+
+.matrix-legend-section h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.matrix-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.matrix-legend-color {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border: 1px solid #999;
+}
