@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Lab 6: GDP Hierarchy Visualization</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body{font-family:Arial,sans-serif;margin:30px;background:#fafafa}
+        h1{margin-bottom:5px}h2{margin-top:35px}.description{margin-bottom:25px;color:#555}
+        .treemap-container{background:#fff;border:1px solid #ddd;padding:15px;margin-bottom:30px}
+        svg{display:block;margin:auto}.cell rect{stroke:#fff;stroke-width:1.5px}.cell text{pointer-events:none;font-size:11px;fill:#000}
+        .continent-label{font-size:14px;font-weight:700;pointer-events:none}.legend{display:flex;gap:25px;margin:15px 0 25px;align-items:center}
+        .legend-item{display:flex;align-items:center;gap:7px}.legend-box{ display: inline-block;flex: 0 0 18px;width: 18px;height: 18px;min-width: 18px;min-height: 18px;}.legend-box.increase{background-color: #4daf4a;}.legend-box.unchanged {background-color: #999999 !important;}.legend-box.decrease {background-color: #e41a1c !important;}
+        .tooltip{position:absolute;opacity:0;pointer-events:none;background:#fff;border:1px solid #aaa;border-radius:5px;padding:10px 12px;font-size:13px;line-height:1.5;box-shadow:0 2px 6px rgba(0,0,0,0.15)}
+        .cell{cursor:pointer}
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lab 6: GDP Hierarchy Visualization</h1>
+        <p>
+            This is Lab 6 for STATS 401.
+        </p>
+    </header>
+    <nav class="lab-nav">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <main>
+        <h1>Global GDP Treemaps</h1>
+        <p class="description">These treemaps visualize the hierarchical structure <strong>Continent → Area → Country</strong>. Rectangle area represents GDP, while color represents GDP status.</p>
+        <div class="legend-title">GDP Status</div>
+        <div class="legend">
+            <div class="legend-item"><span class="legend-box increase"></span><span>Increase</span></div>
+            <div class="legend-item"><span class="legend-box unchanged"></span><span>Unchanged</span></div>
+            <div class="legend-item"><span class="legend-box decrease"></span><span>Decrease</span></div>
+        </div>
+        <h2>Treemap 1 — Squarify</h2>
+        <p class="description">The Squarify layout attempts to create rectangles with aspect ratios closer to squares, making country sizes easier to compare.</p>
+        <div class="treemap-container"><div id="treemap-squarify"></div></div>
+        <div id="tooltip" class="tooltip"></div>
+        <script src="main.js"></script>
+        <h2>Treemap 2 — Binary</h2>
+        <p class="description">The Binary layout recursively divides the available space into two groups, producing a different spatial organization of the same hierarchical data.</p>
+        <div class="treemap-container"><div id="treemap-binary"></div></div>
+        <div id="tooltip" class="tooltip"></div>
+        <script src="main.js"></script>
+        <h2>Design Description</h2>
+        <p class = "description">
+            I chose rectangle area to represent GDP because larger GDP values can be shown as larger rectangles, 
+            making the relative economic size of countries easy to compare. 
+            I use color to represent GDP status, with green for Increase, gray for Unchanged, and red for Decrease. 
+            This allows viewers to quickly identify the direction of GDP changes while using area for the quantitative comparison. 
+            The nested rectangles and labels show the hierarchy from Continent to Area to Country. 
+            The two treemaps use Squarify and Binary segmentation methods. 
+            Squarify tries to produce rectangles with aspect ratios closer to squares, so country rectangles are generally easier to compare and their labels are easier to read. 
+            In contrast, Binary recursively divides the available space into two groups, resulting in a different spatial organization and potentially more elongated rectangles. 
+            Although both treemaps encode the same GDP values and statuses, the different segmentation strategies change the visual appearance and affect how easily the hierarchy and country sizes can be interpreted.
+        </p>
+    </main>
+    <script src="js/main.js"></script>
+    <p>
+        <a href="../index.html">
+            Back to home
+        </a>
+    </p>
+</body>
+</html>
