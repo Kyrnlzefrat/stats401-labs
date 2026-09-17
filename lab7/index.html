@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Lab 7: Animated Temporal Commercial Network</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Lab 7: Animated Temporal Commercial Network</h1>
+        <p>
+            This is Lab 7 for STATS 401.
+        </p>
+    </header>
+
+    <nav class="lab-nav">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+
+    <main>
+        <h2>Part A: Temporal Node-Link Visualization</h2>
+        <p>
+            This visualization shows how commercial transactions among 12 companies
+            change over 60 days. Nodes represent companies, while links represent
+            undirected commercial relationships active on the selected day.
+        </p>
+
+        <div id="status" class="status">Loading data...</div>
+
+        <div id="chart" class="chart-shell">
+            <svg id="network"
+                 role="img"
+                 aria-label="Animated temporal commercial network"></svg>
+            <div id="tooltip" class="tooltip" aria-hidden="true"></div>
+        </div>
+
+        <div id="legend" class="encoding-card">
+            <div class="legend-section">
+                <h3>Node Encoding</h3>
+                <div class="legend-grid">
+                    <div class="legend-block">
+                        <div class="legend-label">Sector · color</div>
+                        <div id="sector-legend" class="legend-items"></div>
+                    </div>
+                    <div class="legend-block">
+                        <div class="legend-label">Region · outline pattern</div>
+                        <div id="region-legend" class="legend-items"></div>
+                    </div>
+                    <div class="legend-block">
+                        <div class="legend-label">Current-day volume · size</div>
+                        <div id="node-size-legend" class="legend-scale"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-section">
+                <h3>Link Encoding</h3>
+                <div class="legend-grid">
+                    <div class="legend-block">
+                        <div class="legend-label">Transaction type · color</div>
+                        <div id="type-legend" class="legend-items"></div>
+                    </div>
+                    <div class="legend-block">
+                        <div class="legend-label">Transaction value · width</div>
+                        <div id="link-width-legend" class="legend-scale"></div>
+                    </div>
+                    <div class="legend-block">
+                        <div class="legend-label">Activity change · opacity</div>
+                        <div id="link-opacity-legend" class="legend-scale"></div>
+                    </div>
+                </div>
+                <p class="legend-note">Newly active relationships are briefly shown with stronger opacity during a transition.</p>
+            </div>
+        </div>
+
+        <h2>Part B: Temporal Controls and Dynamic Node Activity</h2>
+        <p>
+            Use the controls below to inspect individual days or watch the network
+            evolve continuously. The force simulation keeps the same company nodes
+            across frames to help preserve the mental map.
+        </p>
+
+        <div class="controls card">
+            <div class="control-row main-controls">
+                <button id="play" type="button">Play</button>
+                <button id="pause" type="button">Pause</button>
+                <button id="reset" type="button">Reset</button>
+
+                <div class="day-readout">
+                    <span class="label">Current time</span>
+                    <strong id="day-label">Day —</strong>
+                    <span id="date-label">—</span>
+                </div>
+
+                <label class="speed-control">
+                    Speed
+                    <select id="speed">
+                        <option value="1200">Slow</option>
+                        <option value="700" selected>Medium</option>
+                        <option value="300">Fast</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="slider-wrap">
+                <span>Day 1</span>
+                <input id="time-slider"
+                       type="range"
+                       min="1"
+                       max="60"
+                       step="1"
+                       value="1">
+                <span>Day 60</span>
+            </div>
+        </div>
+
+        <div class="summary-card card">
+            <h3>Current-day Summary</h3>
+            <div class="stat-grid">
+                <div class="stat">
+                    <span>Active companies</span>
+                    <strong id="active-companies">—</strong>
+                </div>
+                <div class="stat">
+                    <span>Active links</span>
+                    <strong id="active-links">—</strong>
+                </div>
+                <div class="stat">
+                    <span>Total transaction value</span>
+                    <strong id="total-value">—</strong>
+                </div>
+                <div class="stat">
+                    <span>Transaction count</span>
+                    <strong id="total-count">—</strong>
+                </div>
+            </div>
+        </div>
+
+        <h2>Part C: Design Description and Temporal Network Questions</h2>
+
+        <h3>C1. Node-Link Design</h3>
+        <p>
+            The temporal node-link view uses color to represent company sector,
+            outline pattern to distinguish geographic region, and node size to
+            represent current-day transaction volume. Link width represents the
+            transaction value associated with a relationship, while link color
+            identifies the transaction type. Links entering the current frame fade
+            in and links leaving the frame fade out, making changes in connectivity
+            visible during animation. Hovering over a node or link provides additional
+            information for the selected time point.
+        </p>
+
+        <h3>C2. Temporal Interaction Design</h3>
+        <p>
+            The Play, Pause, Reset, and time-slider controls allow users to inspect
+            the full 60-day period either continuously or one day at a time. The
+            current day and date are displayed above the slider, and the summary panel
+            reports active companies, active links, total transaction value, and
+            transaction count. The visualization keeps the same company objects and
+            updates the existing force simulation rather than rebuilding the network
+            from scratch for every day.
+        </p>
+
+        <h3>C3. Network Questions and Findings</h3>
+        <p>
+            The following findings are calculated directly from the supplied 60-day
+            transaction data when the page loads.
+        </p>
+
+        <div id="findings" class="findings-grid">
+            <div class="finding">
+                <h3>1. Overall connectivity</h3>
+                <p>Loading...</p>
+            </div>
+            <div class="finding">
+                <h3>2. Commercially active companies</h3>
+                <p>Loading...</p>
+            </div>
+            <div class="finding">
+                <h3>3. Separate clusters</h3>
+                <p>Loading...</p>
+            </div>
+            <div class="finding">
+                <h3>4. Appearing/disappearing relationships</h3>
+                <p>Loading...</p>
+            </div>
+            <div class="finding">
+                <h3>5. Cross-regional activity</h3>
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <p class="error" id="error-message"></p>
+
+        <p>
+            <a href="../index.html">
+                Back to home
+            </a>
+        </p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
