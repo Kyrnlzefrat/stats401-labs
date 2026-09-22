@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Lab 8: DKU Bulletin Semantic Exploration</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Lab 8: DKU Bulletin Semantic Exploration</h1>
+
+        <p>
+            This is Lab 8 for STATS 401. This visualization explores the
+            semantic and formal structure of the Duke Kunshan University
+            Undergraduate Instruction Bulletin.
+        </p>
+    </header>
+
+
+    <nav class="lab-nav">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+
+
+    <main>
+
+        <!-- ===================================================== -->
+        <!-- Part A -->
+        <!-- ===================================================== -->
+
+        <h2>Part A: Bulletin and Corpus Overview</h2>
+
+        <p>
+            This lab uses the
+            <em>Bulletin of Duke Kunshan University Undergraduate Instruction</em>
+            for the 2021–2022 academic year. The bulletin is divided into
+            meaningful paragraph-level or policy-block passages while
+            preserving chapter, section, subsection, and page metadata.
+        </p>
+
+        <div class="overview">
+
+            <div class="stat-card">
+                <div class="value" id="stat-passages">—</div>
+                <div class="label">Clean passages</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="value" id="stat-sections">—</div>
+                <div class="label">Formal sections</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="value" id="stat-length">—</div>
+                <div class="label">Average words / passage</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="value" id="stat-topics">—</div>
+                <div class="label">Semantic topics</div>
+            </div>
+
+        </div>
+
+
+        <div class="visualization">
+
+            <h3>Passages by Formal Section</h3>
+
+            <svg id="section-chart"
+                 viewBox="0 0 820 440"
+                 role="img"
+                 aria-label="Number of passages by formal bulletin section">
+            </svg>
+
+        </div>
+
+
+        <div class="visualization">
+
+            <h3>Top TF-IDF Terms</h3>
+
+            <div id="term-table"></div>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- Part B -->
+        <!-- ===================================================== -->
+
+        <h2>Part B: Semantic Embedding Map</h2>
+
+        <p>
+            Each passage is represented by a semantic embedding generated
+            using the <code>all-MiniLM-L6-v2</code> sentence-transformer
+            model. The 384-dimensional embeddings are projected into two
+            dimensions with UMAP. Nearby passages tend to have similar
+            semantic content.
+        </p>
+
+
+        <div class="controls">
+
+            <label>
+                Search
+                <input
+                    type="search"
+                    id="search"
+                    placeholder="Search bulletin...">
+            </label>
+
+
+            <label>
+                Formal section
+                <select id="section-filter">
+                    <option value="__all__">
+                        All sections
+                    </option>
+                </select>
+            </label>
+
+
+            <label>
+                Semantic topic
+                <select id="topic-filter">
+                    <option value="__all__">
+                        All topics
+                    </option>
+                </select>
+            </label>
+
+
+            <button id="clear-selection"
+                    type="button">
+                Clear selection
+            </button>
+
+        </div>
+
+
+        <div class="visualization">
+
+            <svg id="semantic-map"
+                 viewBox="0 0 920 620"
+                 role="img"
+                 aria-label="Two-dimensional semantic embedding map">
+            </svg>
+
+            <div class="legend"
+                 id="legend">
+            </div>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- Part C -->
+        <!-- ===================================================== -->
+
+        <h2>Part C: Passage Details and Semantic Neighbors</h2>
+
+        <p>
+            Click a passage to inspect its document location, semantic
+            topic, original text, and nearest semantic neighbors.
+            This supports comparison of passages that may occur in
+            different formal sections of the bulletin.
+        </p>
+
+
+        <div id="detail-panel">
+
+            <h3>Passage details</h3>
+
+            <p class="detail-text">
+                Click a point in the semantic map to inspect a passage
+                and its nearest semantic neighbors.
+            </p>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- Part D -->
+        <!-- ===================================================== -->
+
+        <h2>Part D: Semantic Map Interaction</h2>
+
+        <p>
+            The map uses position to encode the UMAP projection, color
+            to encode semantic topic, and point size to encode passage
+            length. Search, topic filtering, section filtering, and
+            zoom and pan support exploration of the semantic space.
+            Click a point to display its passage details and nearest
+            semantic neighbors.
+        </p>
+
+
+        <!-- ===================================================== -->
+        <!-- Part E -->
+        <!-- ===================================================== -->
+
+        <h2 class="matrix-title">
+            Part E: Topic × Bulletin Section Matrix
+        </h2>
+
+        <p>
+            The matrix connects the semantic structure of the corpus
+            with the bulletin's formal organization. Rows represent
+            formal bulletin sections, columns represent semantic topics,
+            and cell intensity represents the number of passages in
+            each section-topic combination.
+        </p>
+
+
+        <div class="visualization matrix-visualization">
+
+            <div id="matrix-scroll">
+
+                <svg id="matrix"
+                     role="img"
+                     aria-label="Topic by bulletin section matrix">
+                </svg>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- Part F -->
+        <!-- ===================================================== -->
+
+        <h2>Part F: Coordinated Interaction</h2>
+
+        <p>
+            The semantic map and Topic × Section matrix are coordinated.
+            Selecting a semantic passage identifies its corresponding
+            formal section and semantic topic in the matrix. Selecting
+            a matrix cell highlights the passages belonging to that
+            section-topic combination in the semantic map.
+        </p>
+
+
+        <div class="finding">
+
+            <h3>How to explore the coordinated views</h3>
+
+            <p>
+                Click a semantic point to highlight its corresponding
+                matrix cell and inspect nearest semantic neighbors.
+                Click a matrix cell to highlight the matching passages
+                in the semantic map. The search box and filters can be
+                used before or after these selections.
+            </p>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- Part G -->
+        <!-- ===================================================== -->
+
+        <h2>Part G: Semantic Findings</h2>
+
+        <p>
+            The findings below are generated directly from the corpus
+            analysis results produced by
+            <code>build_analysis.py</code>.
+        </p>
+
+
+        <div id="findings"
+             class="findings">
+
+            <p>
+                Loading findings...
+            </p>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- Part H -->
+        <!-- ===================================================== -->
+
+        <h2>Part H: Design Description and Findings</h2>
+
+        <div id="part-h-content">
+
+            <p>
+                Loading Part H...
+            </p>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- Bulletin Source -->
+        <!-- ===================================================== -->
+
+        <h2>Bulletin Source</h2>
+
+        <p>
+            <strong>Title:</strong>
+            Bulletin of Duke Kunshan University Undergraduate Instruction
+        </p>
+
+        <p>
+            <strong>Academic Year:</strong>
+            2021–2022
+        </p>
+
+        <p>
+            <strong>Source:</strong>
+            <a
+                href="https://dku-web-admissions.s3.cn-north-1.amazonaws.com.cn/dkumain/files/V2021-22_DKU_UG_Bulletin.pdf"
+                target="_blank"
+                rel="noopener noreferrer">
+                DKU Undergraduate Bulletin PDF
+            </a>
+        </p>
+
+
+        <!-- ===================================================== -->
+        <!-- Back to Home -->
+        <!-- ===================================================== -->
+
+        <p>
+            <a href="../index.html">
+                Back to home
+            </a>
+        </p>
+
+    </main>
+
+
+    <!-- ========================================================= -->
+    <!-- D3 -->
+    <!-- ========================================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

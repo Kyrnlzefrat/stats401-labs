@@ -1,0 +1,487 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #222;
+    background: white;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+h3 {
+    margin-top: 22px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: #333;
+}
+
+code {
+    background: #f1f1f1;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+/* -----------------------------------------------------------
+   Navigation
+----------------------------------------------------------- */
+
+.lab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 30px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.lab-nav a {
+    padding: 8px 14px;
+    text-decoration: none;
+    background: #f1f1f1;
+    color: #333;
+    border-radius: 5px;
+}
+
+.lab-nav a:hover {
+    background: #333;
+    color: white;
+}
+
+/* -----------------------------------------------------------
+   General visualization containers
+----------------------------------------------------------- */
+
+#chart,
+#semantic-map,
+#matrix,
+#section-chart {
+    margin-top: 30px;
+}
+
+.visualization {
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+/* -----------------------------------------------------------
+   Corpus overview
+----------------------------------------------------------- */
+
+.overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    background: #fafafa;
+}
+
+.stat-card .value {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-card .label {
+    font-size: 11px;
+    color: #666;
+}
+
+/* -----------------------------------------------------------
+   Controls
+----------------------------------------------------------- */
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #f8f8f8;
+}
+
+.controls label {
+    font-size: 14px;
+}
+
+.controls input,
+.controls select {
+    margin-left: 5px;
+    padding: 7px 9px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    background: white;
+    font-family: Arial, sans-serif;
+}
+
+.controls input {
+    width: 240px;
+}
+
+.controls button {
+    padding: 7px 12px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    background: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background: #333;
+    color: white;
+}
+
+/* -----------------------------------------------------------
+   Semantic map
+----------------------------------------------------------- */
+
+#semantic-map {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+.passage {
+    cursor: pointer;
+}
+
+.passage:hover {
+    stroke: #333;
+    stroke-width: 2px;
+}
+
+.passage.selected {
+    stroke: #111;
+    stroke-width: 3px;
+}
+
+.passage.neighbor {
+    stroke: #555;
+    stroke-width: 2px;
+}
+
+/* -----------------------------------------------------------
+   Legend
+----------------------------------------------------------- */
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #999;
+    flex-shrink: 0;
+}
+
+/* -----------------------------------------------------------
+   Detail panel
+----------------------------------------------------------- */
+
+#detail-panel {
+    margin-top: 20px;
+    padding: 18px;
+    min-height: 120px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
+
+#detail-panel h3 {
+    margin-top: 0;
+}
+
+#detail-panel h4 {
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.detail-meta {
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.detail-text {
+    line-height: 1.6;
+}
+
+/* -----------------------------------------------------------
+   Nearest neighbors
+----------------------------------------------------------- */
+
+.neighbors {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.neighbor-item {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+.neighbor-item:hover {
+    background: #f1f1f1;
+}
+
+.neighbor-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.neighbor-item span {
+    display: block;
+    line-height: 1.5;
+    color: #555;
+    font-size: 13px;
+}
+
+/* -----------------------------------------------------------
+   Topic × Section matrix
+----------------------------------------------------------- */
+
+#matrix-scroll {
+    width: 100%;
+    max-height: 720px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+#matrix {
+    display: block;
+    width: 1100px;
+    background: white;
+}
+.matrix-title {
+    margin-top: 25px;
+    margin-bottom: 4px;
+}
+
+.matrix-visualization {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#matrix-scroll {
+    width: 100%;
+    max-height: 720px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    background: white;
+    line-height: 0;
+}
+
+#matrix {
+    display: block;
+    background: white;
+    max-width: none;
+    width: auto;
+    height: auto;
+}
+
+.matrix-cell {
+    cursor: pointer;
+    shape-rendering: crispEdges;
+    transition: opacity 0.15s;
+}
+
+.matrix-cell:hover {
+    stroke: #333;
+    stroke-width: 2px;
+}
+
+.matrix-cell.selected {
+    stroke: #111;
+    stroke-width: 3px;
+}
+
+.passage {
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.passage:hover {
+    stroke: #111;
+    stroke-width: 2px;
+}
+
+.passage.matrix-match {
+    stroke: #111;
+    stroke-width: 2.5px;
+}
+
+.passage.matrix-nonmatch {
+    stroke: none;
+}
+
+/* -----------------------------------------------------------
+   Section chart / axes
+----------------------------------------------------------- */
+
+.axis path,
+.axis line {
+    stroke: #ccc;
+}
+
+.axis text {
+    font-size: 11px;
+    fill: #555;
+}
+
+/* -----------------------------------------------------------
+   TF-IDF table
+----------------------------------------------------------- */
+
+#term-table {
+    margin-top: 15px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #f1f1f1;
+}
+
+/* -----------------------------------------------------------
+   Findings
+----------------------------------------------------------- */
+
+.findings {
+    margin-top: 20px;
+}
+
+.finding {
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
+
+.finding h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.finding p {
+    margin-bottom: 0;
+}
+
+/* -----------------------------------------------------------
+   Tooltip
+----------------------------------------------------------- */
+
+.tooltip {
+    position: absolute;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.4;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* -----------------------------------------------------------
+   Responsive design
+----------------------------------------------------------- */
+
+@media (max-width: 800px) {
+    .overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .controls {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .controls input,
+    .controls select {
+        margin-left: 0;
+    }
+
+    .controls input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .overview {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-nav {
+        flex-direction: column;
+    }
+
+    .lab-nav a {
+        text-align: center;
+    }
+}

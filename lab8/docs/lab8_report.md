@@ -1,0 +1,12 @@
+# Lab 8 — Design Description and Findings
+
+## Corpus and pipeline
+The system analyzes the **Bulletin of Duke Kunshan University Undergraduate Instruction (2021–2022)** from the official DKU PDF source. After PDF block extraction, repeated headers, page-number artifacts, duplicate passages, and malformed blocks are removed. The resulting corpus contains **1,475 passages** across **82 formal sections**, with a mean passage length of **70.7 words**. Each passage preserves chapter, section, subsection, page, and text metadata.
+
+Each passage is encoded with the Sentence-Transformers model **all-MiniLM-L6-v2**. The normalized embeddings are projected to two dimensions with UMAP using 15 neighbors, minimum distance 0.15, cosine distance, and random seed 401. K-means with **8 clusters** is then applied to the original embeddings rather than to the 2D projection. Cluster labels are assigned from within-cluster TF-IDF terms and representative passages. The current topic labels are: Curriculum & Degree Requirements, Majors & Courses, Academic Procedures — Topic 2, Majors & Courses — Topic 3, Academic Procedures, Student Life & Support, Majors & Courses — Topic 2, Majors & Courses — Topic 4.
+
+## Visual encodings and interaction
+The semantic map uses x/y position for the UMAP projection, color for semantic topic, and point radius for passage length. Clicking a point opens a persistent detail panel with its formal location, page, topic, text, novelty score, and five nearest semantic neighbors. Search highlights matching passages, while section and topic filters reduce the active set. D3 zoom/pan supports local inspection. The Topic × Section matrix encodes passage counts through cell area/opacity and supports coordinated highlighting: selecting a matrix cell highlights all passages with that formal section and semantic topic, while selecting a passage activates the corresponding matrix cell.
+
+## Findings
+The largest cross-sectional themes are represented by **Curriculum & Degree Requirements, Majors & Courses, Academic Procedures — Topic 2, Majors & Courses — Topic 3, Academic Procedures**. Formal-section diversity is quantified with normalized topic entropy; the most diverse section in this run is **Duke Kunshan University Community Standard**. The keyword view also shows that terms such as *credit*, *graduation*, *registration*, and *academic integrity* are distributed across multiple semantic contexts rather than being confined to a single page or chapter. The dashboard lets these relationships be inspected directly at passage level.
