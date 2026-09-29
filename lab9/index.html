@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 9: Geospatial Visualization</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Lab 9: Geospatial Visualization</h1>
+    <p>STATS 401: Data Acquisition and Visualization</p>
+  </header>
+  <nav class="lab-nav">
+    <a href="../lab1/index.html">Lab 1</a>
+    <a href="../lab2/index.html">Lab 2</a>
+    <a href="../lab3/index.html">Lab 3</a>
+    <a href="../lab4/index.html">Lab 4</a>
+    <a href="../lab5/index.html">Lab 5</a>
+    <a href="../lab6/index.html">Lab 6</a>
+    <a href="../lab7/index.html">Lab 7</a>
+    <a href="../lab8/index.html">Lab 8</a>
+    <a href="../lab9/index.html">Lab 9</a>
+    <a href="../lab10/index.html">Lab 10</a>
+  </nav>
+  <main>
+    <section class="lab-section">
+      <h2>1. Dataset Description</h2>
+      <p>This lab uses the provided 2025 nominal GDP dataset containing the 50 largest economies by GDP.</p>
+      <p>The dataset contains the country ISO-3 identifier, country name, 2025 nominal GDP in billions of U.S. dollars, and GDP rank.</p>
+      <p class="note">Countries outside the provided top-50 dataset are treated as missing data rather than zero GDP.</p>
+    </section>
+    <section class="lab-section">
+      <div class="section-heading">
+        <div>
+          <h2>2. 2025 GDP Choropleth</h2>
+          <p>Country location and geographic boundaries are preserved, while color represents 2025 nominal GDP.</p>
+        </div>
+        <div id="selected-label" class="selected-label">No country selected</div>
+      </div>
+      <button id="clear-selection" class="button" type="button">Clear Selection</button>
+      <div id="choropleth" class="viz"></div>
+    </section>
+    <section class="lab-section">
+      <div class="section-heading">
+        <div>
+          <h2>3. 2025 GDP Cartogram</h2>
+          <p>Country area is distorted according to 2025 nominal GDP.</p>
+        </div>
+        <div class="legend-chip">GDP encoded by area</div>
+      </div>
+      <div id="cartogram" class="viz"></div>
+      <p class="small-note">The cartogram emphasizes quantitative magnitude by changing geographic area. Countries outside the provided GDP dataset are shown as no-data context rather than zero GDP.</p>
+    </section>
+    <section class="lab-section">
+      <h2>4. Design and Comparison</h2>
+      <p>The choropleth makes the United States and China visually prominent through the darkest colors while preserving the familiar outlines and geographic positions of countries. In the cartogram, the same economies become especially visually dominant because their areas are enlarged in proportion to GDP. By contrast, geographically large countries such as Russia, Canada, and Australia occupy much less visual area relative to their physical size because their nominal GDP is smaller than their geographic footprints. The choropleth therefore preserves boundaries, relative location, adjacency, and recognizable country shapes, making it useful for questions about where large economies are located and how economic values vary across regions. The cartogram deliberately distorts shape and geographic area, so it is harder to estimate real geographic extent or recognize some countries. However, area encoding makes differences in economic magnitude more salient, supporting comparisons of the relative size of economies. Switching from color to area changes the visual perception from where high values are located toward how much visual space each economy represents. The two views therefore emphasize different tasks while using the same underlying data.</p>
+    </section>
+  </main>
+  <div id="tooltip" class="tooltip"></div>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cartogram-chart@1.4.4"></script>
+  <script src="../lab9/js/main.js"></script>
+  <p><a href="../index.html">Back to home</a></p>
+</body>
+</html>
