@@ -1,5 +1,5 @@
-const GDP_FILE = "data/lab9_gdp_2025_top50.csv";
-const LOCAL_GEOJSON = "data/world.geojson";
+const GDP_FILE = "../data/lab9_gdp_2025_top50.csv";
+const LOCAL_GEOJSON = "../data/world.geojson";
 const REMOTE_GEOJSON =
   "https://raw.githubusercontent.com/datasets/geo-countries/main/data/countries.geojson";
 const CARTOGRAM_TOPOJSON =
